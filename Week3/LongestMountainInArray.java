@@ -1,5 +1,3 @@
-package week3;
-
 public class LongestMountainInArray {
     public int longestMountain(int[] A) {
         int n = A.length;
