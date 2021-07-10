@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class IntervalListIntersections {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
         int f = 0;

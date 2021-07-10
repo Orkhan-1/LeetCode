@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 class SequentialDigits {
    public List<Integer> sequentialDigits(int low, int high) {
         List<Integer> result = new ArrayList();

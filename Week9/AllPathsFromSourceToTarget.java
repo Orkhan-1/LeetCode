@@ -1,3 +1,5 @@
+import java.util.*;
+
 class AllPathsFromSourceToTarget {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> result = new ArrayList<>();

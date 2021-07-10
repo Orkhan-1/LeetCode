@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class FindTheMinimumNumberOfFibonacciNumbersWhoseSumIsK {
     public int findMinFibonacciNumbers(int k) {
         int prev=1;

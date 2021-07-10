@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class PartitionLabels {
     public List<Integer> partitionLabels(String S) {
         List<Integer> res = new ArrayList<>();

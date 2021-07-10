@@ -1,3 +1,5 @@
+import java.util.PriorityQueue;
+
 class PathWithMinimumEffort {
     public int minimumEffortPath(int[][] heights) {
          boolean[][] visited = new boolean[heights.length][heights[0].length];
