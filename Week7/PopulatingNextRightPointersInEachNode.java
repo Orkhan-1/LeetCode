@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class PopulatingNextRightPointersInEachNode {
     public Node connect(Node root) {
         if(root==null) {

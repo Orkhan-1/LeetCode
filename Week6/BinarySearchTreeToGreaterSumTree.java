@@ -1,8 +1,9 @@
 class BinarySearchTreeToGreaterSumTree {
     int sum = 0;
+
     public TreeNode bstToGst(TreeNode node) {
         if (node == null) {
-         return node;   
+            return node;
         }
         bstToGst(node.right);
         sum += node.val;
