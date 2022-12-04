@@ -12,10 +12,6 @@ public class NthDigit {
      * ......
      * */
 
-    public static void main(String[] args) {
-        new NthDigit().findNthDigit(153);
-    }
-
     public int findNthDigit(int n) {
         int len = 1;
         long count = 9;
