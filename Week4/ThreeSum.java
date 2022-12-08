@@ -5,7 +5,7 @@ import java.util.List;
 public class ThreeSum {
 
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
         for (int i = 0; i + 2 < nums.length; i++) {
             if (i > 0 && nums[i] == nums[i - 1]) {
@@ -16,7 +16,7 @@ public class ThreeSum {
             int target = -nums[i];
             while (l < r) {
                 if (nums[l] + nums[r] == target) {
-                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    result.add(Arrays.asList(nums[i], nums[l], nums[r]));
                     l++;
                     r--;
                     while (l < r && nums[l] == nums[l + 1]) {
@@ -32,7 +32,7 @@ public class ThreeSum {
                 }
             }
         }
-        return res;
+        return result;
     }
 
 }

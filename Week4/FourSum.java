@@ -19,9 +19,9 @@ public class FourSum {
                 continue;
             }
             List<List<Integer>> tempList = kSum(k - 1, nums, target - nums[i], i + 1);
-            for (List<Integer> tempInnerList : tempList) {
-                tempInnerList.add(nums[i]);
-                result.add(tempInnerList);
+            for (List<Integer> temp : tempList) {
+                temp.add(nums[i]);
+                result.add(temp);
             }
         }
         return result;
