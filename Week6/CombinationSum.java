@@ -3,12 +3,6 @@ import java.util.List;
 
 public class CombinationSum {
 
-    public static void main(String[] args) {
-        int[] input = {2, 3, 6, 7};
-        int targe = 7;
-        new CombinationSum().combinationSum(input, targe);
-    }
-
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         bt(0, candidates, target, new ArrayList<>(), result);
