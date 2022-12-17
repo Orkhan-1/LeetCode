@@ -5,5 +5,6 @@
 #### Week 3 - 6
 #### Week 4 - 19
 #### Week 5 - 2
+#### Week 6 - 13
 
-#### TOTAL - 44
+#### TOTAL - 57
