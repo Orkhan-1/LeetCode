@@ -6,5 +6,6 @@
 #### Week 4 - 19
 #### Week 5 - 2
 #### Week 6 - 13
+#### Week 7 - 7
 
-#### TOTAL - 57
+#### TOTAL - 64
