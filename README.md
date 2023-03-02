@@ -9,6 +9,7 @@
 #### Week 7 - 9
 #### Week 8 - 4
 #### Week 9 - 1
-#### Week 10
+#### Week 10 - 3
+#### Week 11 -
 
-#### TOTAL - 71
+#### TOTAL - 74
