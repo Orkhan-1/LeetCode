@@ -1,46 +1,43 @@
 public class IntersectionOfTwoLinkedLists {
 
     public ListNode getIntersectionNode(ListNode l1, ListNode l2) {
+
         if (l1 == null || l2 == null) {
             return null;
         }
 
-        // 1. Calculate length of each list
-        int lengthL1 = 0;
-        ListNode headL1 = l1;
-        while (headL1 != null) {
-            lengthL1++;
-            headL1 = headL1.next;
+        ListNode l1Temp = l1;
+        int s1 = 0;
+        while (l1Temp != null) {
+            l1Temp = l1Temp.next;
+            s1++;
         }
 
-        int lengthL2 = 0;
-        ListNode headL2 = l2;
-        while (headL2 != null) {
-            lengthL1++;
-            headL2 = headL2.next;
+        ListNode l2Temp = l2;
+        int s2 = 0;
+        while (l2Temp != null) {
+            l2Temp = l2Temp.next;
+            s2++;
         }
 
-        //2.Move longer one n steps
-        if (lengthL1 > lengthL2) {
-            int diff = lengthL1 - lengthL2;
-            while (diff > 0) {
+        if (s1 > s2) {
+            int d = s1 - s2;
+            while (d != 0) {
                 l1 = l1.next;
-                diff--;
+                d--;
             }
         } else {
-            int diff = lengthL2 - lengthL1;
-            while (diff > 0) {
+            int d = s2 - s1;
+            while (d != 0) {
                 l2 = l2.next;
-                diff--;
+                d--;
             }
         }
 
-        // 2. Find intersection
         while (l1 != l2) {
             l1 = l1.next;
             l2 = l2.next;
         }
-
         return l1;
     }
 
