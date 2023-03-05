@@ -2,6 +2,11 @@ import java.util.*;
 
 public class TopKFrequentWords {
 
+    public static void main(String[] args) {
+        String[] words = {"the","day","is","sunny","the","the","the","sunny","is","is"};
+        new TopKFrequentWords().topKFrequent(words,4);
+    }
+
     public List<String> topKFrequent(String[] words, int k) {
 
         Map<String, Integer> freq = new HashMap<>();
@@ -14,19 +19,17 @@ public class TopKFrequentWords {
         }
 
         PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>(
-                (a, b) -> Objects.equals(a.getValue(), b.getValue()) ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue()
+                (a, b) -> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) :  b.getValue() - a.getValue()
         );
 
         for (Map.Entry<String, Integer> entry : freq.entrySet()) {
             pq.offer(entry);
-            if (pq.size() > k) {
-                pq.poll();
-            }
         }
 
         List<String> result = new ArrayList<>();
-        while (!pq.isEmpty()) {
-            result.add(0, pq.poll().getKey());
+        while (k!=0) {
+            result.add(pq.poll().getKey());
+            k--;
         }
         return result;
     }
