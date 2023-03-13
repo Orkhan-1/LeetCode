@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 public class Trie {
 
     private final Node root;
@@ -8,7 +6,7 @@ public class Trie {
         root = new Node('/');
     }
 
-    public void insert(@NotNull String word) {
+    public void insert(String word) {
         Node current = this.root;
         for (int i = 0; i < word.length(); i++) {
             int child = word.charAt(i) - 'a';
@@ -20,7 +18,7 @@ public class Trie {
         current.isComplete = true;
     }
 
-    public boolean search(@NotNull String word) {
+    public boolean search(String word) {
         Node current = this.root;
         for (int i = 0; i < word.length(); i++) {
             int child = word.charAt(i) - 'a';
@@ -32,7 +30,7 @@ public class Trie {
         return current.isComplete;
     }
 
-    public boolean startsWith(@NotNull String prefix) {
+    public boolean startsWith(String prefix) {
         Node current = this.root;
         for (int i = 0; i < prefix.length(); i++) {
             int child = prefix.charAt(i) - 'a';
