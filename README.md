@@ -11,8 +11,8 @@
 #### Week 9 - 1
 #### Week 10 - 3
 #### Week 11 - 4
-#### Week 12 - 3
+#### Week 12 - 6
 
-#### TOTAL - 81
+#### TOTAL - 84
 
-### IN PROGRESS - 83
+### IN PROGRESS - 80
