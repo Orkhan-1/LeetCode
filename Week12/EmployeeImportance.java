@@ -7,13 +7,15 @@ public class EmployeeImportance {
         for (Employee employee : employees) {
             map.put(employee.id, employee);
         }
+
+        int sum = 0;
         Queue<Employee> queue = new LinkedList<>();
         queue.offer(map.get(id));
-        int sum = 0;
+
         while (!queue.isEmpty()) {
-            Employee cur = queue.poll();
-            sum += cur.importance;
-            for (int sub : cur.subordinates) {
+            Employee em = queue.poll();
+            sum += em.importance;
+            for (int sub : em.subordinates) {
                 queue.offer(map.get(sub));
             }
         }

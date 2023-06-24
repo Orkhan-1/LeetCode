@@ -6,6 +6,7 @@ public class NumberOfSubArraysOfSizeKAndAverageGreaterThanOrEqualToThreshold {
         for (int i = 0; i < k; i++) {
             sum += arr[i];
         }
+
         if (sum / k >= threshold) {
             result++;
         }
