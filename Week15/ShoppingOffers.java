@@ -6,44 +6,46 @@ import java.util.Map;
 public class ShoppingOffers {
 
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
-        return calculateMinCost(price, special, needs, new HashMap<>());
+        return calculateMinCost (price, special, needs, new HashMap ());
     }
 
-    private int calculateMinCost(List<Integer> price, List<List<Integer>> special, List<Integer> needs, Map<List<Integer>, Integer> dp) {
+    private int calculateMinCost (List<Integer> price, List<List<Integer>> specials, List<Integer> needs, Map<List<Integer>, Integer> dp) {
+
         if (dp.containsKey(needs)) {
             return dp.get(needs);
         }
-        int minCost = calculateCost(price, needs);
-        for (List<Integer> current : special) {
-            if (isSpecialApplicable(needs, current)) {
-                List<Integer> updatedNeeds = new ArrayList<>(needs);
-                for (int i = 0; i < needs.size(); i++) {
-                    updatedNeeds.set(i, updatedNeeds.get(i) - current.get(i));
+
+        int cost = calculateCost (price, needs);
+
+        for (List <Integer> special: specials) {
+            if (isSpecialApplicable (special, needs)) {
+                List<Integer> updatedNeeds = new ArrayList (needs);
+                for (int i=0; i< needs.size (); i++) {
+                    updatedNeeds.set (i, needs.get(i) - special.get(i));
                 }
-                int offerCost = current.get(current.size() - 1);
-                minCost = Math.min(minCost, offerCost + calculateMinCost(price, special, updatedNeeds, dp));
+                int offerCost = special.get (special.size()-1);
+                cost = Math.min (cost, offerCost + calculateMinCost (price, specials, updatedNeeds, dp));
             }
         }
-
-        dp.put(needs, minCost);
-        return minCost;
+        dp.put (needs, cost);
+        return cost;
     }
 
-    private boolean isSpecialApplicable(List<Integer> needs, List<Integer> special) {
-        for (int i = 0; i < needs.size(); i++) {
-            if (needs.get(i) < special.get(i)) {
+    private int calculateCost (List<Integer> price, List<Integer> needs) {
+        int cost = 0;
+        for (int i=0; i<needs.size(); i++) {
+            cost+=needs.get(i) * price.get(i);
+        }
+        return cost;
+    }
+
+    private boolean isSpecialApplicable (List<Integer> special, List<Integer> needs) {
+        for (int i=0; i<needs.size(); i++) {
+            if (special.get(i) > needs.get (i)) {
                 return false;
             }
         }
         return true;
-    }
-
-    private int calculateCost(List<Integer> price, List<Integer> needs) {
-        int cost = 0;
-        for (int i = 0; i < price.size(); i++) {
-            cost += price.get(i) * needs.get(i);
-        }
-        return cost;
     }
 
 }

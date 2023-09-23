@@ -15,6 +15,4 @@
 #### Week 13 - 2
 #### Week 14 - 2
 
-#### TOTAL - 85
-
-### IN PROGRESS - 79
+#### TOTAL - 86
