@@ -6,7 +6,7 @@ import java.util.Map;
 public class ShoppingOffers {
 
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
-        return calculateMinCost (price, special, needs, new HashMap ());
+        return calculateMinCost (price, special, needs, new HashMap<>());
     }
 
     private int calculateMinCost (List<Integer> price, List<List<Integer>> specials, List<Integer> needs, Map<List<Integer>, Integer> dp) {
@@ -19,7 +19,7 @@ public class ShoppingOffers {
 
         for (List <Integer> special: specials) {
             if (isSpecialApplicable (special, needs)) {
-                List<Integer> updatedNeeds = new ArrayList (needs);
+                List<Integer> updatedNeeds = new ArrayList<>(needs);
                 for (int i=0; i< needs.size (); i++) {
                     updatedNeeds.set (i, needs.get(i) - special.get(i));
                 }
