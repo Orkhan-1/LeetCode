@@ -1,13 +1,17 @@
+
+// Time complexity -  O(N)
+// Space complexity - O (1)
 public class MaximumSubarray {
 
     public int maxSubArray(int[] nums) {
-        int maxValue=nums[0];
-        int previousValue=nums[0];
-        for (int i=1; i<nums.length; i++) {
-            int current = Math.max (nums[i], previousValue+nums[i]);
-            maxValue = Math.max (maxValue, current);
-            previousValue=current;
+        int prevMax = nums[0];
+        int totalMax = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int currentMax = Math.max(prevMax + nums[i], nums[i]);
+            totalMax = Math.max(currentMax, totalMax);
+            prevMax = currentMax;
         }
-        return maxValue;
+        return totalMax;
     }
 }
