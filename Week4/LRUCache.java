@@ -8,12 +8,13 @@ import java.util.Map;
  * -put () - remove if exist, if not just add after head
  * */
 
+// Time complexity - O (1)
+// Space complexity - O (N)
 public class LRUCache {
 
-    private Map<Integer, Node> map = new HashMap<>();
+    private Map<Integer, Node> lruCache = new HashMap<>();
     private int capacity;
     private int currentCapacity;
-
     private Node head = new Node(-1, -1);
     private Node tail = new Node(-1, -1);
 
@@ -22,47 +23,36 @@ public class LRUCache {
         this.currentCapacity = 0;
         head.next = tail;
         tail.prev = head;
-        head.prev = null;
-        tail.next = null;
     }
 
     public int get(int key) {
-        Node node = map.getOrDefault(key, null);
-        if (node == null) {
+        if (lruCache.get(key) == null) {
             return -1;
         }
+        Node node = lruCache.get(key);
         removeNode(node);
         addNode(node);
         return node.value;
     }
 
     public void put(int key, int value) {
-        if (map.getOrDefault(key, null) != null) {
-            Node node = map.get(key);
+        if (lruCache.get(key) != null) {
+            Node node = lruCache.get(key);
             node.value = value;
             removeNode(node);
             addNode(node);
         } else {
             if (currentCapacity == capacity) {
-                Node last = tail.prev;
-                map.remove(last.key);
-                Node left = last.prev;
-                left.next = tail;
-                tail.prev = left;
+                Node node = tail.prev;
+                lruCache.remove(node.key);
+                removeNode(node);
                 currentCapacity--;
             }
             Node newNode = new Node(key, value);
-            map.put(key, newNode);
             addNode(newNode);
+            lruCache.put(key, newNode);
             currentCapacity++;
         }
-    }
-
-    private void removeNode(Node node) {
-        Node left = node.prev;
-        Node right = node.next;
-        left.next = right;
-        right.prev = left;
     }
 
     private void addNode(Node node) {
@@ -73,17 +63,25 @@ public class LRUCache {
         headNext.prev = node;
     }
 
-    private class Node {
+    private void removeNode(Node node) {
+        Node left = node.prev;
+        Node right = node.next;
+        left.next = right;
+        right.prev = left;
+    }
+
+
+    class Node {
         int key;
         int value;
-        Node next;
         Node prev;
+        Node next;
 
-        public Node(int key, int val) {
-            this.value = val;
+        Node(int key, int value) {
             this.key = key;
-            this.next = null;
+            this.value = value;
             this.prev = null;
+            this.next = null;
         }
     }
 }
