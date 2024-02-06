@@ -1,5 +1,5 @@
 // Time complexity - O (N)
-// Space complexity - O (N)
+// Space complexity - O (N) - the height of the binary tree
 public class DiameterOfBinaryTree {
     private int diameter = 0;
 
