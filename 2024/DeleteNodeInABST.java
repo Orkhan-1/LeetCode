@@ -1,3 +1,6 @@
+
+// Time complexity -  O (N)
+// Space complexity - O (N)
 public class DeleteNodeInABST {
 
     public TreeNode deleteNode(TreeNode root, int key) {
