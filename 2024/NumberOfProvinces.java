@@ -19,9 +19,9 @@ public class NumberOfProvinces {
 
     private void dfs(int[][] isConnected, boolean[] visited, int node) {
         visited[node] = true;
-        for (int neighbor = 0; neighbor < isConnected.length; neighbor++) {
-            if (isConnected[node][neighbor] == 1 && !visited[neighbor]) {
-                dfs(isConnected, visited, neighbor);
+        for (int i = 0; i < isConnected.length; i++) {
+            if (isConnected[node][i] == 1 && !visited[i]) {
+                dfs(isConnected, visited, i);
             }
         }
     }
