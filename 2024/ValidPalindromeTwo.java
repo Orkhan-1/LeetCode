@@ -5,7 +5,7 @@ public class ValidPalindromeTwo {
 
 
     // aabcbaa
-    public static boolean validPalindrome(String s) {
+    public boolean validPalindrome(String s) {
         int l = 0;
         int r = s.length() - 1;
 
@@ -19,7 +19,7 @@ public class ValidPalindromeTwo {
         return true;
     }
 
-    private static boolean isPalindrome(String input, int s, int e) {
+    private boolean isPalindrome(String input, int s, int e) {
         while (s < e) {
             if (input.charAt(s) != input.charAt(e)) {
                 return false;
