@@ -1,15 +1,14 @@
 import java.util.Random;
 
+// Time complexity - O (N), O (log N)
+// Space complexity - O (N)
 public class RandomPickWithWeight {
 
     private int[] prefixSum;
-    private Random random;
 
     public RandomPickWithWeight(int[] w) {
         int n = w.length;
         prefixSum = new int[n];
-        random = new Random();
-
         prefixSum[0] = w[0];
         for (int i = 1; i < n; i++) {
             prefixSum[i] = prefixSum[i - 1] + w[i];
@@ -17,8 +16,9 @@ public class RandomPickWithWeight {
     }
 
     public int pickIndex() {
-        int target = random.nextInt(prefixSum[prefixSum.length - 1]) + 1;
-        int left = 0, right = prefixSum.length - 1;
+        int target = new Random().nextInt(prefixSum[prefixSum.length - 1]) + 1;
+        int left = 0;
+        int right = prefixSum.length - 1;
 
         while (left < right) {
             int mid = left + (right - left) / 2;
