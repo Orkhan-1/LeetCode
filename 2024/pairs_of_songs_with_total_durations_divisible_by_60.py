@@ -12,8 +12,3 @@ class Solution:
             count += remainder_count.get(complement, 0)
             remainder_count[remainder] = remainder_count.get(remainder, 0) + 1
         return count
-
-
-solution = Solution()
-time = [30, 20, 150, 100, 40]
-print(solution.numPairsDivisibleBy60(time))  # Output: 3
