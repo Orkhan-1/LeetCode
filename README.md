@@ -1,31 +1,54 @@
 # Competitive Programming
 
-#### Week 1 - 10
-#### Week 2 - 7
-#### Week 3 - 6
-#### Week 4 - 19
-#### Week 5 - 2
-#### Week 6 - 13
-#### Week 7 - 9
-#### Week 8 - 4
-#### Week 9 - 1
-#### Week 10 - 3
-#### Week 11 - 4
-#### Week 12 - 2
-#### Week 13 - 2
-#### Week 14 - 2
-#### Week 14 - 2
-#### Week 15 - 3
-#### Week 16 - 2
-#### Week 17 - 5
-#### Week 18 - 4
-#### Week 19 - 10
-#### Week 20 - 11
-#### Week 21 - 13
-#### Week 22 - 8
+## Purpose
 
-#### Week 24-1 - 4
-#### Week 24-2 - 9
-#### Week 24-3 - 8
+Welcome to the Competitive Programming! This repository contains comprehensive solutions to various coding problems,
+including but not limited to LeetCode challenges, algorithm implementations, and more. Whether you're a novice or an
+experienced programmer, you'll find meticulously crafted solutions and valuable insights to enhance your problem-solving
+skills and knowledge.
 
-#### TOTAL - 162
+## Video Format
+
+Each solution follows a structured format:
+
+1. **Problem Statement**: A brief overview of the problem statement.
+2. **Approach**: Explanation of the chosen approach to tackle the problem.
+3. **Code Walkthrough**: Step-by-step breakdown of the code implementation.
+4. **Time and Space Complexity Analysis**: In-depth analysis of the time and space complexity of the solution.
+
+## Supported Languages
+
+Default language for all solutions is Java. I'm adding more language support. Currently, I extended it to followings:
+
+- Python
+- Java
+- JS
+- Go
+- C++
+- Scala
+
+## Repository Organization
+
+The repository houses the source code for all LeetCode solutions discussed in the videos. Solutions are categorized by
+problem title for easy navigation and reference.
+
+Feel free to explore the repository, star it if you find it valuable, and fork it to experiment with the code on your
+own!
+
+## Stay Connected
+
+- Subscribe to my [YouTube Channel](https://www.youtube.com/@orkhan-1/)
+- Follow me on [LinkedIn](https://www.linkedin.com/in/orkhan-gasanov)
+- Follow me on [Twitter](https://x.com/GasanovOrkhan1)
+
+## Supporting Me
+
+If you find my content helpful, consider supporting me in the following ways:
+
+- Subscribe to my channel and enable notifications.
+- Share my videos with your peers and network.
+- Leave constructive feedback and suggestions in the comments.
+- If you have more optimal solutions for the problems, please send a pull request.
+
+Your support drives my passion for delivering high-quality content and empowers me to create more enriching experiences
+for you!
