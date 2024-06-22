@@ -1,8 +1,8 @@
-# Competitive Programming
+# LeetCode
 
 ## Purpose
 
-Welcome to the Competitive Programming! This repository contains comprehensive solutions to various coding problems,
+Welcome to the LeetCode! This repository contains comprehensive solutions to various coding problems,
 including but not limited to LeetCode challenges, algorithm implementations, and more. Whether you're a novice or an
 experienced programmer, you'll find meticulously crafted solutions and valuable insights to enhance your problem-solving
 skills and knowledge.
