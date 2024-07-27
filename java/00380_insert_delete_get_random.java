@@ -6,8 +6,6 @@ public class InsertDeleteGetRandom {
 
     private Map<Integer, Integer> map = new HashMap<>();
     private List<Integer> list = new ArrayList<>();
-    ;
-
 
     public boolean insert(int val) {
         if (map.containsKey(val)) {
