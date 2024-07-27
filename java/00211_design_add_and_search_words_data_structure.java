@@ -3,7 +3,6 @@
 // Space complexity - O (N)
 public class WordDictionary {
     private TrieNode root = new TrieNode('-');
-    ;
 
     class TrieNode {
 
