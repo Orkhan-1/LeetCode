@@ -3,7 +3,7 @@ from collections import deque
 #     Python
 # Time complexity - O(rows * cols)
 # Space complexity - O(rows * cols)
-class Solution:
+class PayPal:
     def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
         if not matrix or not matrix[0]:
             return matrix
