@@ -1,6 +1,10 @@
 import java.util.HashSet;
 import java.util.Set;
 
+
+//       Java
+// Time complexity -  O(N)
+// Space complexity - O(N)
 public class LongestConsecutiveSequence {
 
     public int longestConsecutive(int[] nums) {
