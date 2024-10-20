@@ -1,5 +1,5 @@
-# Time complexity - O (min (n1,n2)) - where n1 and n2 are the number of non-zero elements in the vectors
-# Space complexity - O (1)
+# Time complexity - O (n)
+# Space complexity - O (n)
 class SparseVector:
     def __init__(self, nums):
         self.non_zero_elements = {i: num for i, num in enumerate(nums) if num != 0}
