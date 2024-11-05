@@ -17,6 +17,8 @@ DFS recursion stack: in the worst case it'll contain all nodes => O (V)
 O(E + 2V) => O(E + V)
  */
 
+import java.util.*;
+
 public class Solution {
     private Map<String, Map<String, Double>> graph = new HashMap<>();
 
@@ -46,7 +48,9 @@ public class Solution {
     }
 
     private double dfs(String A, String B, Set<String> visited) {
-        if (A.equals(B)) return 1.0;
+        if (A.equals(B)) {
+            return 1.0;
+        }
         visited.add(A);
         Map<String, Double> neighbors = graph.get(A);
         for (String neighbor : neighbors.keySet()) {
