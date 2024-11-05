@@ -3,7 +3,7 @@
  # if odd -1
 
  # 14 => 1110
- # if even /2 [Check the least significant bit (0)  => righshift 1110 > 0111]
+ # if even /2 [Check the least significant bit (0)  => right shift 1110 > 0111]
  # if odd -1  [Check the least significant bit (1)  => flip 0111 > 0110]
 
 
