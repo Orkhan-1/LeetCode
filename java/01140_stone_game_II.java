@@ -4,28 +4,35 @@ import java.util.Map;
 class Solution {
 
     public int stoneGameII(int[] piles) {
-        return getMaxScore(true, 1, 1, 0, 0, piles, new HashMap<>());
+        return getMaxScore(true, 1, 0, piles, new HashMap<>());
     }
 
-    private int getMaxScore(boolean turn, int m, int x, int index, int maxScore, int[] piles, Map<String, Integer> memo) {
-        if (memo.containsKey(index + "_" + x)) {
-            return memo.get(index + "_" + x);
+    private int getMaxScore(boolean turn, int m, int index, int[] piles, Map<String, Integer> memo) {
+        if (index >= piles.length) {
+            return 0;
         }
-        m = Math.max(m, x);
+
+        String key = index + "_" + m + "_" + turn;
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        int maxScore = turn ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         int tempScore = 0;
-        if (turn) {
-            for (int i = index; i < index + 2 * m && i < piles.length; i++) {
-                tempScore += piles[i];
-                int currentScore = tempScore + getMaxScore(false, m, i - index + 1, index + 1, maxScore, piles, memo);
-                maxScore = Math.max(maxScore, currentScore);
-            }
-        } else {
-            for (int i = index; i < index + 2 * m && i < piles.length; i++) {
-                int currentScore = getMaxScore(false, m, i - index + 1, index + 1, maxScore, piles, memo);
-                maxScore = Math.max(maxScore, currentScore);
+
+        for (int x = 1; x <= 2 * m; x++) {
+            if (index + x > piles.length) break;
+
+            tempScore += piles[index + x - 1];
+
+            if (turn) {
+                maxScore = Math.max(maxScore, tempScore + getMaxScore(false, Math.max(m, x), index + x, piles, memo));
+            } else {
+                maxScore = Math.min(maxScore, getMaxScore(true, Math.max(m, x), index + x, piles, memo));
             }
         }
-        memo.put(index + "_" + x, maxScore);
+
+        memo.put(key, maxScore);
         return maxScore;
     }
 }
