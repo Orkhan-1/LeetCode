@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 
+//     Python
+// Time complexity - O(n^3)
+// Space complexity - O(n^2)
 class Solution {
 
     public int stoneGameII(int[] piles) {

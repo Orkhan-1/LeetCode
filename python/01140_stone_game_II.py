@@ -1,3 +1,6 @@
+#     Python
+# Time complexity - O(n^3)
+# Space complexity - O(n^2)
 class Solution:
     def stoneGameII(self, piles: List[int]) -> int:
         def getMaxScore(turn: bool, m: int, index: int, memo: dict) -> int:
