@@ -1,6 +1,5 @@
 /*
 
-
 🧠 Build an autocomplete system that suggests the top 3 historical sentences
    matching current typed prefixes, ordered by frequency and lexicographically.
 
@@ -41,6 +40,11 @@ public class AutocompleteSystem {
     private static class TrieNode {
         Map<Character, TrieNode> children = new HashMap<>();
         Map<String, Integer> counts = new HashMap<>();
+    }
+
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[26];
+        boolean isEnd;
     }
 
     public AutocompleteSystem(String[] sentences, int[] times) {
