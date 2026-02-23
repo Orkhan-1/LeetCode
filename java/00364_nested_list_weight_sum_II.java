@@ -1,69 +1,65 @@
 /*
 
-📘 Problem:
-Given a nested list of integers, compute the sum of all integers weighted by
-the reverse of their depth.
+🎯 Goal
+Sum all integers in a nested list with weights from bottom → top.
 
-🧩 Example:
-Input: [1,[4,[6]]]
+🌳 Example Input: [1,[4,[6]]]
+Visualized as a tree (depth ↓)
 
-Depth 1 → [ [ [6] ] ]
-Depth 2 →   [4, [6]]
-Depth 3 →     [1]
-Weights (reverse): 1️⃣→3, 2️⃣→2, 3️⃣→1
+Level 1:   1
+            \
+Level 2:     4
+               \
+Level 3:        6
 
-Computation:
-1 (depth 3) → 1 * 3 = 3
-4 (depth 2) → 4 * 2 = 8
-6 (depth 1) → 6 * 1 = 6
-🎯 Total = 3 + 8 + 6 = 17
+🏷️ Depth weights (bottom-up)
+6 → weight 1
+4 → weight 2
+1 → weight 3
 
-🧠 Approach (Two-Pass DFS):
-1️⃣ First DFS → Find maximum depth (maxDepth)
-2️⃣ Second DFS → Accumulate each value × (maxDepth - depth + 1)
+🎯 Calculation
+= 6×1 + 4×2 + 1×3
+= 6 + 8 + 3 = 17 ✅
 
-⏱️ Time Complexity: O(N)
-💾 Space Complexity: O(N)
+🪜 Steps
+1️⃣ Find max depth
+2️⃣ Sum each integer × (maxDepth - depth + 1)
+
+⏱️ O(N) time | 🧠 O(D) space
 */
 
-
-import java.util.*;
-
-class Solution {
-    public int depthSumInverse(List<NestedInteger> nestedList) {
-        // 1) find maximum depth
-        int maxDepth = getMaxDepth(nestedList, 1);
-
-        // 2) compute weighted sum
-        return getWeightedSum(nestedList, 1, maxDepth);
-    }
-
-    private int getMaxDepth(List<NestedInteger> list, int depth) {
-        int maxDepth = depth;
-        for (NestedInteger ni : list) {
-            if (!ni.isInteger()) {
-                maxDepth = Math.max(maxDepth, getMaxDepth(ni.getList(), depth + 1));
-            }
-        }
-        return maxDepth;
-    }
-
-    private int getWeightedSum(List<NestedInteger> list, int depth, int maxDepth) {
-        int sum = 0;
-        for (NestedInteger ni : list) {
-            if (ni.isInteger()) {
-                int weight = maxDepth - depth + 1;
-                sum += ni.getInteger() * weight;
-            } else {
-                sum += getWeightedSum(ni.getList(), depth + 1, maxDepth);
-            }
-        }
-        return sum;
-    }
+interface NestedInteger {
+    boolean isInteger();
+    Integer getInteger();
+    java.util.List<NestedInteger> getList();
 }
 
-public interface NestedInteger {
-    public boolean isInteger();
-    public Integer getInteger();
-    public List<NestedInteger> getList();
+public class Solution {
+
+    public int depthSumInverse(java.util.List<NestedInteger> nestedList) {
+        int maxDepth = findMaxDepth(nestedList, 1);
+        return sum(nestedList, 1, maxDepth);
+    }
+
+    private int findMaxDepth(java.util.List<NestedInteger> list, int depth) {
+        int max = depth;
+        for (NestedInteger ni : list)
+            if (!ni.isInteger()) {
+                max = Math.max(max, findMaxDepth(ni.getList(), depth + 1));
+            }
+
+        return max;
+    }
+
+    private int sum(java.util.List<NestedInteger> list, int depth, int maxDepth) {
+        int total = 0;
+        for (NestedInteger ni : list) {
+            if (ni.isInteger()) {
+                total += ni.getInteger() * (maxDepth - depth + 1);
+            } else {
+                total += sum(ni.getList(), depth + 1, maxDepth);
+            }
+        }
+        return total;
+    }
 }
