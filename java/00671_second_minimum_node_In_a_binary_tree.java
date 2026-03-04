@@ -35,7 +35,9 @@ class Solution {
     }
 
     private void dfs(TreeNode node, int minValue) {
-        if (node == null) return;
+        if (node == null) {
+            return;
+        }
 
         if (node.val > minValue) {
             if (result == -1 || node.val < result) {
