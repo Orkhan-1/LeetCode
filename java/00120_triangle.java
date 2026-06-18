@@ -112,7 +112,7 @@ class Solution {
         // Find the minimum value in the last row
         int result = dp[n - 1][0];
         for (int j = 1; j < n; j++) {
-            result = Math.min(ans, dp[n - 1][j]);
+            result = Math.min(result, dp[n - 1][j]);
         }
 
         return result;
