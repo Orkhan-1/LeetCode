@@ -1,8 +1,13 @@
 /*
 
+
+
+
 🧩 Problem:
 
 Minesweeper
+
+------------------------------------------------------------
 
 💡 Example:
 
@@ -15,10 +20,45 @@ Board:
 
 Click = (3,0)
 
+------------------------------------------------------------
+
+🔤 Board Characters:
+
+The board uses different characters to represent the state of
+each cell:
+
+    'E' → Unrevealed / unexplored cell
+          This cell has not been clicked or revealed yet.
+
+    'M' → Hidden mine
+          A mine is present in this cell, but it has not been
+          clicked yet.
+
+    'B' → Blank revealed cell
+          This cell has been revealed and has ZERO adjacent mines.
+          Because there are no nearby mines, we continue revealing
+          its neighboring cells.
+
+    '1'...'8' → Revealed cell containing the number of adjacent mines
+          For example:
+              '1' → exactly 1 adjacent mine
+              '2' → exactly 2 adjacent mines
+              ...
+              '8' → exactly 8 adjacent mines
+
+          Once a cell has adjacent mines, we STOP expanding from
+          that cell.
+
+    'X' → Revealed mine
+          The user clicked directly on a mine, so the mine becomes
+          'X' and the game ends.
+
+------------------------------------------------------------
+
 Step 1:
 No adjacent mines → mark as 'B'
 
-    E  E  E  E
+    E  E  E  E                 Click = (3,0)
     E  E  M  E
     B  B  E  E
     B  B  E  E

@@ -1,5 +1,9 @@
 /*
 
+
+
+
+
 🧩 Problem:
 
 Max Area of Island
@@ -24,8 +28,8 @@ If there is no island, return 0.
 
 Input:
 
-1 1 0 0
-1 0 0 1
+-1 -1 0 0
+-1 0 0 1
 0 0 1 1
 0 0 1 0
 
@@ -45,50 +49,6 @@ Island B:
 Area = 4
 
 Largest area = 4
-
-------------------------------------------------------------
-
-🧠 Key Insight #1:
-
-Every land cell belongs to exactly one island.
-
-So when we first encounter a land cell,
-we should explore its entire island and count its size.
-
-Once counted, we never need to visit those cells again.
-
-------------------------------------------------------------
-
-🧠 Key Insight #2:
-
-Use DFS (Depth-First Search).
-
-Starting from one land cell:
-
-1. Count the current cell.
-2. Mark it as visited.
-3. Recursively explore its four neighbors:
-      ↓
-      ↑
-      →
-      ←
-4. Sum all reachable land cells.
-
-The returned value is the island's total area.
-
-------------------------------------------------------------
-
-🧠 Key Insight #3:
-
-Mark visited cells by changing
-
-    1 → -1
-
-This prevents:
-
-• counting the same cell twice
-• infinite recursion
-• needing an extra visited[][] array
 
 ------------------------------------------------------------
 
