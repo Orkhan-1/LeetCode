@@ -1,10 +1,8 @@
 /*
 
+
+
 🧩 Problem:
-
-Mini Parser (LeetCode 385)
-
-💡 Setup:
 
 You are given a string representing a nested list of integers.
 
@@ -17,7 +15,6 @@ Examples:
 Return the corresponding NestedInteger object.
 
 NestedInteger supports:
-
 • storing a single integer
 • storing a nested list of NestedInteger objects
 
@@ -41,114 +38,6 @@ Processing:
     ]
 ]
 
-Output:
-
-NestedInteger representing the same structure.
-
-------------------------------------------------------------
-
-🧠 Key Insight #1:
-
-Whenever we see '[',
-
-a brand new list begins.
-
-We create a new NestedInteger list and push it onto the stack.
-
-The top of the stack always represents
-the current list we are filling.
-
-------------------------------------------------------------
-
-🧠 Key Insight #2:
-
-Whenever we encounter a number,
-
-parse the complete integer
-(handle negative numbers too),
-
-then add it to the list on top of the stack.
-
-Example:
-
-"[12,-34]"
-
-Parse:
-
-12
-
-then
-
--34
-
-------------------------------------------------------------
-
-🧠 Key Insight #3:
-
-Whenever we see ']',
-
-the current list is complete.
-
-Pop it from the stack.
-
-If another list still exists,
-add this completed list into its parent.
-
-If the stack becomes empty,
-
-this completed list is the final answer.
-
-------------------------------------------------------------
-
-🧠 Stack Flow:
-
-Input:
-
-"[123,[456]]"
-
-'['
-Stack:
-[
-  []
-]
-
-123
-
-[
-  [123]
-]
-
-'['
-
-[
-  [123],
-  []
-]
-
-456
-
-[
-  [123],
-  [456]
-]
-
-']'
-
-Pop [456]
-Add to parent
-
-[
-  [123,[456]]
-]
-
-']'
-
-Pop
-
-Stack empty
-
-Return root
-
 ------------------------------------------------------------
 
 🧾 Time Complexity:
@@ -163,17 +52,35 @@ Each character is processed exactly once.
 
 O(d)
 
-d = maximum nesting depth
-(stack stores one NestedInteger per nesting level)
+d = maximum nesting depth (stack stores one NestedInteger per nesting level)
 
 */
+
+public interface NestedInteger {
+
+    public NestedInteger();
+
+    public NestedInteger(int value); //"[123,[456,[789]]]"
+
+    public void add(NestedInteger ni);
+
+
+
+    public boolean isInteger();
+
+    public Integer getInteger();
+
+    public void setInteger(int value);
+
+    public List<NestedInteger> getList();
+}
 
 class Solution {
     public NestedInteger deserialize(String s) {
 
         // Single integer
         if (s.charAt(0) != '[') {
-            return new NestedInteger(Integer.parseInt(s));
+            return new NestedInteger(Integer.parseInt(s)); // "324"
         }
 
         Stack<NestedInteger> stack = new Stack<>();
@@ -188,7 +95,7 @@ class Solution {
                 stack.push(new NestedInteger());
                 i++;
 
-            } else if (ch == ']') {
+            } else if (ch == ']') { // "[123,[456,[789]]]"
 
                 NestedInteger curr = stack.pop();
 
@@ -207,7 +114,7 @@ class Solution {
 
                 int sign = 1;
 
-                if (ch == '-') {
+                if (ch == '-') { //"[123,[-456,[789]]]"
                     sign = -1;
                     i++;
                 }
@@ -226,3 +133,4 @@ class Solution {
         return new NestedInteger();
     }
 }
+

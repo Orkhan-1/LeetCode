@@ -1,31 +1,12 @@
 /*
 
+
+
+
+
 🧩 Problem:
 
-Nearest Valid Point
-
-💡 Setup:
-
 You are given a point (x, y) and an array of points.
-
-A point is valid if it shares either:
-
-• the same x-coordinate
-• the same y-coordinate
-
-For every valid point, calculate the
-Manhattan distance:
-
-    |x1 - x| + |y1 - y|
-
-Return the index of the valid point
-with the smallest distance.
-
-If no valid point exists, return -1.
-
-------------------------------------------------------------
-
-💡 Example:
 
 Input:
 
@@ -39,35 +20,30 @@ points = [
     [3, 4]
 ]
 
+------------------------------------------------------------
+Valid points
+
+A point is valid if it shares either:
+
+• the same x-coordinate
+• the same y-coordinate
+
+For every valid point, calculate the
+Manhattan distance:
+
+    |x1 - x| + |y1 - y|
+
+------------------------------------------------------------
+
 Valid points:
 
 [3, 1] → distance = 3
 [2, 4] → distance = 1
 [3, 4] → distance = 0
 
-Output:
+Return the index of the valid point with the smallest distance.
 
-3
-
-------------------------------------------------------------
-
-🧠 Key Insight:
-
-Loop through every point and ignore
-points that are not valid.
-
-For each valid point, calculate its
-Manhattan distance.
-
-Keep track of the smallest distance
-and its index.
-
-Because we only update when:
-
-    distance < minValue
-
-the first point is kept when two valid
-points have the same distance.
+If no valid point exists, return -1.
 
 ------------------------------------------------------------
 
@@ -117,4 +93,3 @@ class Solution {
         return index;
     }
 }
-```
