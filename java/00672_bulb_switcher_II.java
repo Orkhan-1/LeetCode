@@ -1,117 +1,205 @@
 /*
 
-🧩 Problem:
 
-Bulb Switcher II (LeetCode 672)
 
-💡 Setup:
+🧩 Problem
 
-n bulbs, all initially ON.
-4 buttons, and you press buttons m times total (any combo, repeats allowed):
+We have n bulbs, initially ON, and m number of buttons that can be pressed
 
-Button 1 → flip ALL bulbs
-Button 2 → flip EVEN-indexed bulbs      (2, 4, 6, ...)
-Button 3 → flip ODD-indexed bulbs       (1, 3, 5, ...)
-Button 4 → flip bulbs at indices 3k+1   (1, 4, 7, ...)
+Example:
 
-Question:
-After exactly m presses (any buttons, any order), how many
-DISTINCT final bulb configurations are possible?
+n = 3
+
+💡 💡 💡
+ON ON ON
+
+We can press 4 different buttons:
+
+1️⃣ Toggle ALL bulbs
+
+2️⃣ Toggle EVEN bulbs
+   1 2 3 4 5 6
+   ↓   ↓   ↓
+   💡  💡  💡
+
+3️⃣ Toggle ODD bulbs
+   1 2 3 4 5 6
+     ↓   ↓   ↓
+     💡  💡  💡
+
+4️⃣ Toggle bulbs [j = 3k + 1]: 1, 4, 7, 10...
+     1 2 3 4 5 6
+       ↓ ↓   ↓ ↓
+       💡💡  💡💡
+
+
+The question:
+
+👉 After exactly m "presses" button presses, how many DIFFERENT configurations are possible?
 
 ------------------------------------------------------------
 
-💡 Example (n = 3, m = 1):
+🔑 FIRST INTUITION
 
-Start:
-1  2  3
+Don't think about 100 bulbs.
+
+The buttons create repeating patterns.
+
+For n >= 3, we only need to understand the first 3 bulbs.
+
+Why? Because every button behaves periodically.
+
+So the entire problem reduces to:
+
 💡 💡 💡
 
-Press button 1 (flip all):
-❌ ❌ ❌
+Each bulb can be ON or OFF.
 
-Press button 2 (flip even):
-💡 ❌ 💡
+Therefore, there can be at most:
 
-Press button 3 (flip odd):
-❌ 💡 ❌
+2 × 2 × 2 = 8 different configurations.
 
-Press button 4 (flip 3k+1 → index 1):
-❌ 💡 💡
+So:
 
-→ 4 distinct results after 1 press.
+Maximum answer = 8
 
 ------------------------------------------------------------
 
-🧠 Key Insight #1:
+Example: n = 111
 
-Only the state of the FIRST 3 bulbs actually matters.
+------------------------------------------------------------
+m=0
 
-Why? Because each button's effect on bulb i only depends on
-i mod 2 or i mod 3. So bulb 4 always behaves exactly like bulb 1,
-bulb 5 like bulb 2, bulb 6 like bulb 3, and so on.
+0️⃣ presses
 
-The pattern repeats every 3 bulbs.
+We don't press anything.
 
-→ So we only need to simulate for n = min(n, 3).
+Only:
+
+111
+
+1 configuration.
 
 ------------------------------------------------------------
 
-🧠 Key Insight #2:
+1️⃣ press
 
-Pressing the SAME button twice cancels itself out
-(every button is its own inverse).
+We can press any ONE of the 4 buttons.
 
-So what actually matters is not "which sequence of m presses",
-but "which buttons were pressed an ODD number of times".
+From:
 
-That means the number of distinct outcomes is bounded — it can't
-just keep growing with m. It saturates quickly.
+111
 
-------------------------------------------------------------
+we can get:
 
-🧠 Key Insight #3 — enumerate the small cases:
+Button 1 → 000
+Button 2 → 101
+Button 3 → 010
+Button 4 → 011
 
-n = 0        → always 1 state (no bulbs to flip)
+So:
 
-n = 1        → only buttons 1 & 3 touch bulb 1
-                → 2 possible states (once m ≥ 1)
+000
+101
+010
+011
 
-n = 2:
-    m = 1    → 3 distinct states reachable
-    m ≥ 2    → 4 distinct states reachable (all combos possible)
-
-n ≥ 3:
-    m = 1    → 4 distinct states (one per button pressed alone)
-    m = 2    → 7 distinct states (pairs of button-presses combine,
-                one repeat overlaps with m=0 case handled separately)
-    m ≥ 3    → 8 distinct states (max possible = 2³ patterns for
-                3 bulbs, fully saturated)
+= 4 different configurations
 
 ------------------------------------------------------------
 
-Intuitively understand it: why it SATURATES
+2️⃣ presses
 
-There are only 3 bulbs that matter → only 2³ = 8 possible
-on/off patterns total. No matter how many more times you press
-buttons, you can never produce more than 8 distinct configurations.
+Now we can combine buttons.
 
-That's why m ≥ 3 always gives the same answer (8) for n ≥ 3 —
-you've already unlocked every reachable pattern.
+For example:
+
+Button 1 + Button 2
+111 → 000 → 010
+
+Button 1 + Button 3
+111 → 000 → 101
+
+...
+
+After trying all combinations, we can reach 7 different configurations.
+
+So:
+
+2 presses → 7
 
 ------------------------------------------------------------
 
-🧾 Time Complexity:
-    O(1)
+3️⃣ or more presses
 
-🧾 Space Complexity:
-    O(1)
+Now we have enough presses to reach
+ALL possible configurations:
+
+000
+001
+010
+011
+100
+101
+110
+111
+
+That's:
+
+2³ = 8
+
+More than 3 presses cannot create a 9th configuration.
+
+So:
+
+3+ presses → 8
+
+------------------------------------------------------------
+
+⚠️ BUT n can be 1 or 2
+
+If n = 1:
+
+Only:
+
+ON
+OFF
+
+So maximum = 2.
+
+If n = 2:
+
+Possible states:
+
+00
+01
+10
+11
+
+So maximum = 4.
+
+------------------------------------------------------------
+
+🔑 FINAL OBSERVATION
+
+For n >= 3:
+
+presses = 0  → 1
+presses = 1  → 4
+presses = 2  → 7
+presses >= 3 → 8
+
+And for small n:
+
+n = 1 → maximum 2
+n = 2 → maximum 4
 
 */
 
 class Solution {
-    public int flipLights(int n, int m) {
-        n = Math.min(n, 3);
-        if (m == 0) {
+    public int flipLights(int n, int presses) {
+
+        if (presses == 0) {
             return 1;
         }
 
@@ -120,15 +208,19 @@ class Solution {
         }
 
         if (n == 2) {
-            return m == 1 ? 3 : 4;
+            return presses == 1 ? 3 : 4;
         }
 
-        if (m == 1) {
+        // n >= 3
+        if (presses == 1) {
             return 4;
         }
-        if (m == 2) {
+
+
+        if (presses == 2) {
             return 7;
         }
+
         return 8;
     }
 }

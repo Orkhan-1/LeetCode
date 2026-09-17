@@ -2,163 +2,123 @@
 
 
 
-🧩 Problem:
+🧩 Problem
 
-Bulb Switcher
+We have n bulbs, initially OFF.
 
-💡 Example:
-
-Suppose n = 10 bulbs
+Example: n = 10
 
 Initially:
-💡 💡 💡 💡 💡 💡 💡 💡 💡 💡
-ON ON ON ON ON ON ON ON ON ON
 
-Round 1:
-Toggle every bulb
-❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌
+OFF OFF OFF OFF OFF OFF OFF OFF OFF OFF
 
-Round 2:
-Toggle every 2nd bulb
-1  2  3  4  5  6  7  8  9 10
-❌ 💡 ❌ 💡 ❌ 💡 ❌ 💡 ❌ 💡
+Round 1 → Toggle every bulb:
 
-Round 3:
-Toggle every 3rd bulb
-Bulbs: 3, 6, 9
+💡  💡   💡  💡  💡   💡  💡  💡  💡   💡
+ON  ON  ON  ON  ON  ON  ON  ON  ON  ON
 
-Round 4:
-Toggle every 4th bulb
-Bulbs: 4, 8
 
-...
+Round 2 → Toggle every 2nd bulb:
 
-Question:
-After n rounds, how many bulbs remain ON?
+💡       💡      💡      💡      💡
+ON  OFF ON  OFF ON  OFF ON  OFF ON  OFF
 
-------------------------------------------------------------
 
-🧠 Key Insight:
+Round 3 → Toggle every 3rd bulb:
 
-A bulb is toggled once for EVERY divisor it has.
+💡               💡       💡      💡
+ON  OFF OFF OFF ON  OFF  ON  OFF ON  OFF
 
-Example:
-
-Bulb 12
-Divisors:
-1, 2, 3, 4, 6, 12
-
-It gets toggled 6 times (even)
-→ Ends OFF
+.
+.
+.
+                                    💡
+Return the number of bulbs that are ON after n rounds
 
 ------------------------------------------------------------
 
-Most numbers have divisors in PAIRS.
+Instead of simulating every round, look at ONE bulb.
 
-Example:
+💡 Bulb #6
 
-12
+It gets toggled in rounds:
 
-1 × 12
-2 × 6
-3 × 4
+1, 2, 3, 6
 
-Each pair contributes two toggles.
+Because these are the divisors of 6.
 
-Even number of toggles
-→ OFF
+4 toggles → OFF
 
 ------------------------------------------------------------
 
-Perfect squares are different.
+💡 Bulb #9
 
-Example:
+It gets toggled in rounds:
 
-16
+1, 3, 9
 
-1 × 16
-2 × 8
-4 × 4
+3 toggles → ON
 
-Notice:
-4 is paired with itself.
+------------------------------------------------------------
 
-So divisors are:
+🔑 Key Observation:
 
-1, 2, 4, 8, 16
+A bulb is toggled once for every divisor of its position.
 
-Total = 5 divisors (odd)
+Most numbers have divisors in pairs:
 
-Odd number of toggles
-→ ON
+12 → (1,12), (2,6), (3,4)
+     → 6 divisors → OFF
+
+Perfect squares have one unpaired divisor:
+
+9 → (1,9), (3,3)
+              ↑
+         pairs with itself
+
+     → 3 divisors → ON
 
 ------------------------------------------------------------
 
 Therefore:
 
-Only PERFECT SQUARE bulbs remain ON.
+Perfect square → ON
+Non-perfect square → OFF
 
-Bulbs ON for n = 10:
+For n = 10:
 
-1
-4
-9
+💡          💡                 💡
+ON OFF OFF ON OFF OFF OFF OFF ON OFF
+↑          ↑                  ↑
+1          4                  9
+
+Perfect squares:
+
+1, 4, 9
 
 Answer = 3
 
 ------------------------------------------------------------
 
-How many perfect squares are ≤ n ?
+💡 Final Formula:
 
-1²
-2²
-3²
-...
-k² ≤ n
+Number of perfect squares <= n
 
-k = √n
-
-Answer = floor(√n)
-
-------------------------------------------------------------
-
-Intuitively understand it: Largest integer satisfying it
-
-Suppose
-
-n = 20
-√20 ≈ 4.472
-
-The largest integer not exceeding 4.472 is
-
-4
-
-Indeed,
-
-1² = 1
-2² = 4
-3² = 9
-4² = 16
-5² = 25   > 20
-
-There are exactly 4 perfect squares.
-
-Notice
-
-floor(√20) = floor(4.472) = 4
+= floor(√n)
 
 ------------------------------------------------------------
 
 🧾 Time Complexity:
-    O(1)
+
+O(1)
 
 🧾 Space Complexity:
-    O(1)
 
+O(1)
 */
 
 class Solution {
     public int bulbSwitch(int n) {
-        return (int)Math.sqrt(n);
+        return (int) Math.sqrt(n); // 10 ==> 3.1622776601683795
     }
 }
